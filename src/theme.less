@@ -1,0 +1,129 @@
+// The unum theme: stock UIkit 3, then our variables on top.
+//
+// Less evaluates variables lazily, so anything set after the import wins over UIkit's own
+// defaults. That's the whole mechanism: nothing in node_modules is ever edited.
+
+@import "uikit/src/less/uikit.theme.less";
+
+// ---------------------------------------------------------------- palette
+// Shades are named for the color, never the job: uu-red, uu-yellow, uu-grey. Anything that can
+// be colored takes the same modifier (.uk-button.uu-red, .uk-label.uu-green, .uk-card.uu-blue).
+
+@uu-red:    #ffd9d8;
+@uu-yellow: #fff7a1;
+@uu-blue:   #cfe4ff;
+@uu-grey:   #dfe3e6;
+@uu-green:  #c3f8c9;
+@uu-orange: #ffdda6;
+@uu-purple: #f4d9ff;
+
+// Pastels are all light, so text on them is always dark.
+@uu-ink:    #3e3d40;
+
+@uu-palette: {
+  red:    @uu-red;
+  yellow: @uu-yellow;
+  blue:   @uu-blue;
+  grey:   @uu-grey;
+  green:  @uu-green;
+  orange: @uu-orange;
+  purple: @uu-purple;
+}
+
+// ---------------------------------------------------------------- UIkit's own names -> hues
+// danger = red, warning = orange, success = green, primary = blue, secondary = grey.
+
+@global-color: @uu-ink;
+@global-emphasis-color: @uu-ink;
+@global-muted-background: lighten(@uu-grey, 5%);
+
+@global-primary-background: @uu-blue;
+@global-secondary-background: @uu-grey;
+@global-success-background: @uu-green;
+@global-warning-background: @uu-orange;
+@global-danger-background: @uu-red;
+
+@global-link-color: darken(@uu-blue, 45%);
+@global-link-hover-color: darken(@uu-blue, 55%);
+
+@button-primary-background: @uu-blue;
+@button-primary-hover-background: darken(@uu-blue, 6%);
+@button-primary-active-background: darken(@uu-blue, 10%);
+@button-primary-color: @uu-ink;
+@button-primary-hover-color: @uu-ink;
+@button-primary-active-color: @uu-ink;
+
+@button-secondary-background: @uu-grey;
+@button-secondary-hover-background: darken(@uu-grey, 6%);
+@button-secondary-active-background: darken(@uu-grey, 10%);
+@button-secondary-color: @uu-ink;
+@button-secondary-hover-color: @uu-ink;
+@button-secondary-active-color: @uu-ink;
+
+@button-danger-background: @uu-red;
+@button-danger-hover-background: darken(@uu-red, 6%);
+@button-danger-active-background: darken(@uu-red, 10%);
+@button-danger-color: @uu-ink;
+@button-danger-hover-color: @uu-ink;
+@button-danger-active-color: @uu-ink;
+
+@label-background: @uu-blue;
+@label-color: @uu-ink;
+@label-success-background: @uu-green;
+@label-success-color: @uu-ink;
+@label-warning-background: @uu-orange;
+@label-warning-color: @uu-ink;
+@label-danger-background: @uu-red;
+@label-danger-color: @uu-ink;
+
+@alert-primary-background: @uu-blue;
+@alert-primary-color: @uu-ink;
+@alert-success-background: @uu-green;
+@alert-success-color: @uu-ink;
+@alert-warning-background: @uu-orange;
+@alert-warning-color: @uu-ink;
+@alert-danger-background: @uu-red;
+@alert-danger-color: @uu-ink;
+
+// ---------------------------------------------------------------- uu-<color>
+// One modifier per hue, on anything colorable. Plain elements get the fill, text and border;
+// the components UIkit styles itself get matching hover states.
+
+each(@uu-palette, {
+  .uu-@{key} {
+    background-color: @value;
+    color: @uu-ink;
+    border-color: darken(@value, 18%);
+  }
+
+  .uk-button.uu-@{key} {
+    border: 1px solid darken(@value, 18%);
+
+    &:hover,
+    &:focus {
+      background-color: darken(@value, 6%);
+      color: @uu-ink;
+    }
+
+    &:active,
+    &.uk-active {
+      background-color: darken(@value, 10%);
+      color: @uu-ink;
+    }
+  }
+
+  .uk-label.uu-@{key},
+  .uk-badge.uu-@{key},
+  .uk-alert.uu-@{key},
+  .uk-card.uu-@{key} {
+    background-color: @value;
+    color: @uu-ink;
+  }
+
+  .uk-table > tr.uu-@{key},
+  .uk-table tbody tr.uu-@{key} {
+    background-color: @value;
+  }
+
+  .uu-@{key}-text { color: darken(@value, 45%); }
+});

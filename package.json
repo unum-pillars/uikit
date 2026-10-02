@@ -1,0 +1,41 @@
+{
+  "name": "@unum-pillars/uikit",
+  "version": "0.1.0",
+  "description": "A port of UIkit 3 to use for our stuff: one themed build, shared by every app.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unum-pillars/uikit.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "uikit",
+    "css",
+    "theme",
+    "less",
+    "pastel",
+    "unum"
+  ],
+  "style": "dist/css/uikit.min.css",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "css": "mkdir -p dist/css && lessc --include-path=node_modules:node_modules/uikit/src/less/components src/theme.less dist/css/uikit.css && esbuild dist/css/uikit.css --minify --log-level=warning --outfile=dist/css/uikit.min.css",
+    "js": "mkdir -p dist/js && cp node_modules/uikit/dist/js/uikit.min.js node_modules/uikit/dist/js/uikit-icons.min.js dist/js/",
+    "build": "npm run css && npm run js",
+    "clean": "rm -rf dist",
+    "demo": "npm run build && node demo/serve.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "less": "^4.2.0",
+    "uikit": "^3.25.0"
+  }
+}

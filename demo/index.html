@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>unum uikit</title>
+    <link rel="stylesheet" href="/dist/css/uikit.css">
+    <script src="/dist/js/uikit.min.js"></script>
+    <script src="/dist/js/uikit-icons.min.js"></script>
+</head>
+<body>
+<div class="uk-container uk-margin-top uk-margin-large-bottom">
+
+    <h1>unum uikit</h1>
+    <p class="uk-text-lead">UIkit 3 with our theme on top. This page is the kitchen sink: if it looks right here, it looks right everywhere.</p>
+
+    <h2>Palette</h2>
+    <p>Shades are named for the color: <code>uu-red</code>, <code>uu-yellow</code>, and so on. Anything colorable takes the same modifier.</p>
+    <div class="uk-grid-small uk-child-width-1-4@s uk-child-width-1-2" uk-grid>
+        <div><div class="uk-card uk-card-body uk-card-small uu-red">uu-red</div></div>
+        <div><div class="uk-card uk-card-body uk-card-small uu-yellow">uu-yellow</div></div>
+        <div><div class="uk-card uk-card-body uk-card-small uu-blue">uu-blue</div></div>
+        <div><div class="uk-card uk-card-body uk-card-small uu-grey">uu-grey</div></div>
+        <div><div class="uk-card uk-card-body uk-card-small uu-green">uu-green</div></div>
+        <div><div class="uk-card uk-card-body uk-card-small uu-orange">uu-orange</div></div>
+        <div><div class="uk-card uk-card-body uk-card-small uu-purple">uu-purple</div></div>
+    </div>
+    <p class="uk-margin-top">
+        <button class="uk-button uu-red">uu-red</button>
+        <button class="uk-button uu-yellow">uu-yellow</button>
+        <button class="uk-button uu-blue">uu-blue</button>
+        <button class="uk-button uu-grey">uu-grey</button>
+        <button class="uk-button uu-green">uu-green</button>
+        <button class="uk-button uu-orange">uu-orange</button>
+        <button class="uk-button uu-purple">uu-purple</button>
+    </p>
+    <p>
+        <span class="uk-label uu-red">uu-red</span>
+        <span class="uk-label uu-yellow">uu-yellow</span>
+        <span class="uk-label uu-blue">uu-blue</span>
+        <span class="uk-label uu-grey">uu-grey</span>
+        <span class="uk-label uu-green">uu-green</span>
+        <span class="uk-label uu-orange">uu-orange</span>
+        <span class="uk-label uu-purple">uu-purple</span>
+    </p>
+
+    <h2>Buttons</h2>
+    <p>
+        <button class="uk-button uk-button-default">Default</button>
+        <button class="uk-button uk-button-primary">Primary</button>
+        <button class="uk-button uk-button-secondary">Secondary</button>
+        <button class="uk-button uk-button-danger">Danger</button>
+        <button class="uk-button uk-button-text">Text</button>
+    </p>
+
+    <h2>Alerts and labels</h2>
+    <div class="uk-alert-primary" uk-alert><p>Primary alert</p></div>
+    <div class="uk-alert-success" uk-alert><p>Success alert</p></div>
+    <div class="uk-alert-warning" uk-alert><p>Warning alert</p></div>
+    <div class="uk-alert-danger" uk-alert><p>Danger alert</p></div>
+    <p>
+        <span class="uk-label">Default</span>
+        <span class="uk-label uk-label-success">Success</span>
+        <span class="uk-label uk-label-warning">Warning</span>
+        <span class="uk-label uk-label-danger">Danger</span>
+    </p>
+
+    <h2>Navbar and tabs</h2>
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active"><a href="#">Units</a></li>
+                <li><a href="#">Create</a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul class="uk-tab uk-margin-top">
+        <li class="uk-active"><a href="#">One</a></li>
+        <li><a href="#">Two</a></li>
+    </ul>
+
+    <h2>Form</h2>
+    <form class="uk-form-stacked uk-grid-small" uk-grid>
+        <div class="uk-width-1-2@s">
+            <label class="uk-form-label" for="name">Name</label>
+            <input class="uk-input" id="name" type="text" placeholder="Unit name">
+        </div>
+        <div class="uk-width-1-2@s">
+            <label class="uk-form-label" for="kind">Kind</label>
+            <select class="uk-select" id="kind"><option>open</option><option>closed</option></select>
+        </div>
+        <div class="uk-width-1-1">
+            <textarea class="uk-textarea" rows="3" placeholder="Notes"></textarea>
+        </div>
+        <div class="uk-width-1-1">
+            <label><input class="uk-checkbox" type="checkbox" checked> Checkbox</label>
+            <label class="uk-margin-left"><input class="uk-radio" type="radio" name="r" checked> Radio</label>
+        </div>
+    </form>
+
+    <h2>Table</h2>
+    <table class="uk-table uk-table-hover uk-table-divider">
+        <thead><tr><th>Id</th><th>Name</th><th>Tests</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td>people</td><td>0</td></tr>
+            <tr><td>2</td><td>stuff</td><td>1</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Cards and icons</h2>
+    <div class="uk-grid-small uk-child-width-1-3@s" uk-grid>
+        <div><div class="uk-card uk-card-default uk-card-body"><h3 class="uk-card-title">Default</h3><span uk-icon="check"></span></div></div>
+        <div><div class="uk-card uk-card-primary uk-card-body"><h3 class="uk-card-title">Primary</h3><span uk-icon="heart"></span></div></div>
+        <div><div class="uk-card uk-card-secondary uk-card-body"><h3 class="uk-card-title">Secondary</h3><span uk-icon="star"></span></div></div>
+    </div>
+
+</div>
+</body>
+</html>
