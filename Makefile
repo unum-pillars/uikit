@@ -1,7 +1,7 @@
 ACCOUNT=unum-pillars
 IMAGE=uikit
 VERSION?=$(shell cat VERSION)
-PORT?=8080
+PORT?=8575
 TTY=$(shell if tty -s; then echo "-it"; fi)
 VOLUMES=-v ${PWD}/src:/opt/service/src \
 		-v ${PWD}/demo:/opt/service/demo \
@@ -30,9 +30,9 @@ dist:
 	docker run $(TTY) $(VOLUMES) $(ACCOUNT)/$(IMAGE):$(VERSION) npm run build
 
 demo:
-	mkdir -p dist
 	-@docker rm -f uikit-demo >/dev/null 2>&1
-	docker run --rm --name uikit-demo $(TTY) $(VOLUMES) -p 127.0.0.1:$(PORT):8080 $(ACCOUNT)/$(IMAGE):$(VERSION) npm run demo
+	mkdir -p dist
+	docker run --rm --init --name uikit-demo $(TTY) $(VOLUMES) -e PUBLIC_PORT=$(PORT) -p 127.0.0.1:$(PORT):8080 $(ACCOUNT)/$(IMAGE):$(VERSION) npm run demo
 
 pack:
 	mkdir -p dist

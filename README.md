@@ -13,8 +13,8 @@ Everything runs in Docker; you only need Docker and make.
 ```bash
 make build   # build the image (once, and after changing package.json)
 make dist    # compile dist/css/uikit.css, uikit.min.css and copy dist/js/*
-make demo    # compile, then serve the kitchen-sink page on http://localhost:8080
-make demo PORT=9000
+make demo    # compile, then serve the kitchen-sink page on http://localhost:8575
+make demo PORT=9000   # the default is 8575: ASCII U (85) and K (75)
 make shell   # a shell in the container
 ```
 

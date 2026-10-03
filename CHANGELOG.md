@@ -14,5 +14,5 @@ All notable changes to this project are recorded here, newest first. Format foll
 - UIkit's semantic names mapped onto the hues: danger = red, warning = orange, success = green, primary = blue, secondary = grey.
 - Palette swatches on the demo page.
 - Docker and make workflow: `make build|dist|css|demo|shell|clean|tag|untag`; nothing is installed locally.
-- Kitchen-sink demo page (`demo/index.html`) served by `make demo` on http://localhost:8080 (`PORT=` to change it).
+- Kitchen-sink demo page (`demo/index.html`) served by `make demo` on http://localhost:8575 (`PORT=` to change it; 8575 is ASCII U and K).
 - Build outputs `dist/css/uikit.css`, `dist/css/uikit.min.css`, `dist/js/uikit.min.js`, `dist/js/uikit-icons.min.js` (gitignored).

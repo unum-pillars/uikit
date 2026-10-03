@@ -27,4 +27,8 @@ createServer(async (request, response) => {
     response.writeHead(404)
     response.end('not found')
   }
-}).listen(port, '0.0.0.0', () => console.log(`unum uikit demo on http://localhost:${port}`))
+}).listen(port, '0.0.0.0', () => console.log(`unum uikit demo on http://localhost:${process.env.PUBLIC_PORT ?? port}`))
+
+for (const signal of ['SIGINT', 'SIGTERM']) {
+  process.on(signal, () => process.exit(0))
+}
