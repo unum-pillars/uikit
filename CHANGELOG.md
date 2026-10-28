@@ -2,7 +2,7 @@
 
 All notable changes to this project are recorded here, newest first. Format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), except entries go straight under the
-version in `VERSION` that they ship in; there is no Unreleased section.
+version in `VERSION` that they ship in.
 
 ## [0.1.0] - 2026-10-02
 
