@@ -1,9 +1,10 @@
 # Changelog
 
 All notable changes to this project are recorded here, newest first. Format follows
-[Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/), except entries go straight under the
+version in `VERSION` that they ship in.
 
-## [Unreleased]
+## [0.1.0] - 2026-10-02
 
 ### Added
 - Publishable as `@unum-pillars/uikit` (public npm package shipping `dist/`): `make pack` previews the tarball, `make publish` publishes from Docker with your `~/.npmrc`. Consumers can use the jsDelivr CDN, e.g. `https://cdn.jsdelivr.net/npm/@unum-pillars/uikit@0.1.0/dist/css/uikit.min.css`.
