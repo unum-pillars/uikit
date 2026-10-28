@@ -21,6 +21,23 @@ make shell   # a shell in the container
 `src/` and `demo/` are mounted into the container, so editing the theme and re-running
 `make demo` (or `make dist`) needs no rebuild of the image.
 
+## Releasing
+
+`VERSION` is the source of truth; `package.json` and `package-lock.json` follow it, and changelog
+entries go straight under that version in `CHANGELOG.md`. `make help` lists every target.
+
+```bash
+make new               # from a clean main: next version (V=+0.1, +1 or x.y.z, B=branch name), branch, files, changelog section
+make release-check     # where the release is up to and what would stop it; changes nothing
+make release           # from main: checks, publish to npm, wait for it, tag; safe to run again
+make test-release      # tests the scripts in scripts/ against a throwaway repo and a fake registry
+```
+
+npm has no test registry: a published version is gone for good, so `release-check` runs first
+(changelog section, matching versions, no git dependencies, `make build pack`). The `Jenkinsfile`
+runs `make release` on `main`, which does nothing for a version that is already out. It needs the
+`github` credential and an `npm` secret-text credential holding a publish token.
+
 ## Using it in an app
 
 Copy `dist/css/uikit.min.css`, `dist/js/uikit.min.js` and `dist/js/uikit-icons.min.js` into the
