@@ -8,9 +8,14 @@ VOLUMES=-v ${PWD}/src:/opt/service/src \
 		-v ${PWD}/dist:/opt/service/dist \
 		-v ${PWD}/package.json:/opt/service/package.json \
 		-v ${PWD}/package-lock.json:/opt/service/package-lock.json
-NPM=-v ${PWD}/README.md:/opt/service/README.md \
-	-v ${PWD}/CHANGELOG.md:/opt/service/CHANGELOG.md \
-	-v ${PWD}/LICENSE:/opt/service/LICENSE
+# Packing and publishing read the source and keep nothing, so they get only what they use, read-only, and build in a copy:
+# a container writing into the workspace leaves root-owned files that Jenkins can't clean up
+NPM=-v ${PWD}/src:/opt/service/src:ro \
+	-v ${PWD}/package.json:/opt/service/package.json:ro \
+	-v ${PWD}/package-lock.json:/opt/service/package-lock.json:ro \
+	-v ${PWD}/README.md:/opt/service/README.md:ro \
+	-v ${PWD}/CHANGELOG.md:/opt/service/CHANGELOG.md:ro \
+	-v ${PWD}/LICENSE:/opt/service/LICENSE:ro
 NPMRC=-v ${HOME}/.npmrc:/root/.npmrc
 
 .PHONY: stop build shell css dist demo pack publish clean tag untag new version release-check release test-release help
@@ -36,13 +41,11 @@ demo: ## Serves the kitchen-sink page on PORT (default 8575)
 	docker run --rm --init --name uikit-demo $(TTY) $(VOLUMES) -e PUBLIC_PORT=$(PORT) -p 127.0.0.1:$(PORT):8080 $(ACCOUNT)/$(IMAGE):$(VERSION) npm run demo
 
 pack: ## Builds and previews the npm tarball
-	mkdir -p dist
-	docker run --rm $(TTY) $(VOLUMES) $(NPM) $(ACCOUNT)/$(IMAGE):$(VERSION) sh -c "npm run build && npm pack --dry-run"
+	docker run --rm $(TTY) $(NPM) $(ACCOUNT)/$(IMAGE):$(VERSION) sh -c "cp -r /opt/service /opt/install && cd /opt/install && npm run build && npm pack --dry-run"
 
 publish: ## Publishes the version to npm with your ~/.npmrc
 	@test -f ${HOME}/.npmrc || (echo "no ${HOME}/.npmrc to publish with" && exit 1)
-	mkdir -p dist
-	docker run --rm $(TTY) $(VOLUMES) $(NPM) $(NPMRC) $(ACCOUNT)/$(IMAGE):$(VERSION) sh -c "npm run build && npm publish --access public"
+	docker run --rm $(TTY) $(NPM) $(NPMRC) $(ACCOUNT)/$(IMAGE):$(VERSION) sh -c "cp -r /opt/service /opt/install && cd /opt/install && npm run build && npm publish --access public"
 
 stop: ## Stops the demo
 	-docker rm -f uikit-demo
