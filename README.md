@@ -36,7 +36,8 @@ make test-release      # tests the scripts in scripts/ against a throwaway repo 
 npm has no test registry: a published version is gone for good, so `release-check` runs first
 (changelog section, matching versions, no git dependencies, `make build pack`). The `Jenkinsfile`
 runs `make release` on `main`, which does nothing for a version that is already out. It needs the
-`github` credential and an `npm` secret-text credential holding a publish token.
+`github` credential, and `make publish` needs `~/.npmrc` with a token that can publish (on the
+Jenkins host, the one typescript-relations uses).
 
 ## Using it in an app
 
